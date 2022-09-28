@@ -1,5 +1,7 @@
 # coauthor.nvim
 
+[![asciicast](https://asciinema.org/a/O1srNTiHl0LmzhTPWVrUNtSJd.svg)](https://asciinema.org/a/O1srNTiHl0LmzhTPWVrUNtSJd)
+
 ## what?
 
 Coauthor is a Neovim 0.7+ plugin to automatically help you write. Select
