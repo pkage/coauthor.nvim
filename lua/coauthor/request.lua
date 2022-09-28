@@ -46,7 +46,7 @@ local function make_request(prompt, callback)
         prompt = prompt
     }
 
-    print('baking... '..prompt)
+    vim.api.nvim_echo({ {'writing from '..tostring(#prompt)..' chars...', ''} }, false, {})
 
     -- make request
     resp = curl.post({
@@ -60,6 +60,12 @@ local function make_request(prompt, callback)
     })
 end
 
+local function tablelength(T)
+    local count = 0
+    for _ in pairs(T) do count = count + 1 end
+    return count
+end
+
 M.prompt = function()
     -- line only right now
     text = vim.api.nvim_get_current_line()
@@ -68,24 +74,17 @@ M.prompt = function()
     -- save the buffer number
     buf_num = vim.api.nvim_get_current_buf()
 
-    vim.api.nvim_buf_set_lines(0, linenr-1, linenr, false, { 'loading...' })
+    ns_id = vim.api.nvim_create_namespace('coauthor')
+    extmark_id = vim.api.nvim_buf_set_extmark(buf_num, ns_id, linenr-1, -1, { virt_text = { { '  writing...', 'NonText'} } })
+    
 
     callback = function(cont)
-        print(cont)
-
-
-        t = {}
-        if string.find(cont, '\n') ~= nil then
-            for str in string.gmatch(cont, "\n") do
-                table.insert(t, str)
-            end
-        else
-            t = { cont }
-        end
 
         vim.api.nvim_buf_set_lines(0, linenr-1, linenr, false, { '' })
         vim.api.nvim_win_set_cursor(0, {linenr, 0})
         vim.api.nvim_paste(cont, true, -1)
+
+        vim.api.nvim_buf_del_extmark(buf_num, ns_id, extmark_id)
         -- print(unpack(range))
     end
 
