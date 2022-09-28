@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "coauthor-server"
+version = "0.1.0"
+description = "language model server"
+authors = ["Patrick Kage <patrick.r.kage@gmail.com>"]
+readme = "README.md"
+packages = [{include = "coauthor_server"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+transformers = "^4.22.1"
+python-dotenv = "^0.21.0"
+aiohttp = {extras = ["speedups"], version = "^3.8.3"}
+torch = "^1.12.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
