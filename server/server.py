@@ -48,7 +48,6 @@ def create_generation_route(model):
 
         prompt = body['prompt']
 
-        set_seed(7)
         results = pipe(
             prompt,
             max_length=max_length,
