@@ -82,6 +82,12 @@ if __name__ == '__main__':
     LANGUAGE_MODEL = os.environ['LANGUAGE_MODEL']
     APP_PORT = int(os.environ['APP_PORT'])
 
+    if cuda.is_available():
+        # if we have gpus, run on the zeroth one
+        print('cuda is available')
+    else:
+        print('cuda is not available')
+
     print(f'loading language model {LANGUAGE_MODEL}')
 
     # initial setup
