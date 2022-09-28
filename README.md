@@ -5,7 +5,7 @@
 ## what?
 
 Coauthor is a Neovim 0.7+ plugin to automatically help you write. Select
-some text in visual mode to use as a prompt, and coauthor will continue writing
+some text to use as a prompt, and coauthor will continue writing
 that text for you.
 
 ## how?
